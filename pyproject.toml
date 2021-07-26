@@ -4,9 +4,6 @@ version = "0.1.0"
 description = "A Google IAP extension for httpx"
 authors = ["Evan Pikulski <epikulski@gmail.com>"]
 license = "MIT"
-packages = [
-    { include = "httpx_iap", from = "src" },
-]
 
 [tool.poetry.dependencies]
 python = "^3.7"

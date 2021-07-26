@@ -15,13 +15,13 @@ init:
 	poetry version
 
 lint:
-	poetry run flake8 --max-line-length=100 src/$(PROJECT_NAME)
-	poetry run pylint src/$(PROJECT_NAME)
-	poetry run mypy src/$(PROJECT_NAME)
-	poetry run bandit -r src/$(PROJECT_NAME)
+	poetry run flake8 --max-line-length=100 $(PROJECT_NAME)
+	poetry run pylint $(PROJECT_NAME)
+	poetry run mypy $(PROJECT_NAME)
+	poetry run bandit -r $(PROJECT_NAME)
 
 format:
-	poetry run black src/$(PROJECT_NAME)
+	poetry run black $(PROJECT_NAME)
 	poetry run black tests
 
 test:
