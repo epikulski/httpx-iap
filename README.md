@@ -26,6 +26,26 @@ response = httpx.get(
     )
 ```
 
+The `IAPAuth` class is also compatible with `httpx.AsyncClient`
+
+```python
+import json
+
+import httpx
+from httpx_iap import IAPAuth
+
+with open("your-google-service-account.json") as fd:
+    service_account_dict = json.load(fd)
+    
+client_id = "your-client-id-12345.apps.googleusercontent.com"
+
+async with httpx.AsyncClient() as client:
+    response = await client.get(
+        "https://your-iap-protected-service.example.com", 
+        auth=IAPAuth(client_id=client_id, service_account=service_account_dict)
+    )
+```
+
 ## Development
 `httpx_iap` uses [Poetry](https://python-poetry.org/) to manage the development environment. Shortcuts for most development tasks are avaialable
 in the project Makefile
