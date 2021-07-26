@@ -21,7 +21,9 @@ class TestGoogleServiceAccount:
 
     def test_get_bearer_token(self, test_service_account, httpx_mock: HTTPXMock):
         """Test Google OAuth API called correclty."""
-        httpx_mock.add_response(url=test_service_account.token_uri, json={"id_token": "test_id_token"})
+        httpx_mock.add_response(
+            url=test_service_account.token_uri, json={"id_token": "test_id_token"}
+        )
 
         with httpx.Client() as client:
             id_token = test_service_account.get_bearer_token("test_audience", client)
@@ -29,11 +31,17 @@ class TestGoogleServiceAccount:
         assert id_token == "test_id_token"
 
     @pytest.mark.asyncio
-    async def test_async_get_bearer_token(self, test_service_account, httpx_mock: HTTPXMock):
+    async def test_async_get_bearer_token(
+        self, test_service_account, httpx_mock: HTTPXMock
+    ):
         """Test Google Oauth API called correctly."""
-        httpx_mock.add_response(url=test_service_account.token_uri, json={"id_token": "test_id_token"})
+        httpx_mock.add_response(
+            url=test_service_account.token_uri, json={"id_token": "test_id_token"}
+        )
 
         async with httpx.AsyncClient() as client:
-            id_token = await test_service_account.async_get_bearer_token("test_audience", client)
+            id_token = await test_service_account.async_get_bearer_token(
+                "test_audience", client
+            )
 
         assert id_token == "test_id_token"

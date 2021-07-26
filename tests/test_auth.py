@@ -42,7 +42,9 @@ class TestIAPAuth:
         assert requests[0].headers["Authorization"] == "Bearer example_token"
 
     @pytest.mark.asyncio
-    async def test_async_auth_flow(self, auth_with_mocked_account, httpx_mock: HTTPXMock):
+    async def test_async_auth_flow(
+        self, auth_with_mocked_account, httpx_mock: HTTPXMock
+    ):
         httpx_mock.add_response()
         async with httpx.AsyncClient(auth=auth_with_mocked_account) as client:
             await client.get("https://example-iap-route.invalid")
@@ -51,10 +53,16 @@ class TestIAPAuth:
         assert requests[0].headers["Authorization"] == "Bearer example_token"
 
     def test_is_jwt_expired_true(self, auth_with_mocked_account):
-        payload = {"aud": "fake.apps.googleusercontent.com", "azp": "example@example.iam.gserviceaccount.com",
-                   "email": "example@example.iam.gserviceaccount.com", "email_verified": True,
-                   "exp": time.time() - 9000, "iat": time.time() - 10000, "iss": "https://accounts.google.com",
-                   "sub": "1234", }
+        payload = {
+            "aud": "fake.apps.googleusercontent.com",
+            "azp": "example@example.iam.gserviceaccount.com",
+            "email": "example@example.iam.gserviceaccount.com",
+            "email_verified": True,
+            "exp": time.time() - 9000,
+            "iat": time.time() - 10000,
+            "iss": "https://accounts.google.com",
+            "sub": "1234",
+        }
 
         dummy_jwt = jwt.encode(payload, "secret")
 
@@ -67,9 +75,16 @@ class TestIAPAuth:
         auth_with_mocked_account.google_iap_jwt = None
 
     def test_is_jwt_expired_false(self, auth_with_mocked_account):
-        payload = {"aud": "fake.apps.googleusercontent.com", "azp": "example@example.iam.gserviceaccount.com",
-                   "email": "example@example.iam.gserviceaccount.com", "email_verified": True,
-                   "exp": time.time() + 3600, "iat": time.time(), "iss": "https://accounts.google.com", "sub": "1234", }
+        payload = {
+            "aud": "fake.apps.googleusercontent.com",
+            "azp": "example@example.iam.gserviceaccount.com",
+            "email": "example@example.iam.gserviceaccount.com",
+            "email_verified": True,
+            "exp": time.time() + 3600,
+            "iat": time.time(),
+            "iss": "https://accounts.google.com",
+            "sub": "1234",
+        }
         dummy_jwt = jwt.encode(payload, "secret")
 
         auth_with_mocked_account.google_iap_jwt = dummy_jwt
