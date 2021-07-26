@@ -13,7 +13,6 @@ all: init format format lint test build
 init:
 	poetry install
 	poetry version
-	poetry shell
 
 lint:
 	poetry run flake8 --max-line-length=100 src/$(PROJECT_NAME)
