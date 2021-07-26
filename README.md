@@ -46,7 +46,6 @@ async with httpx.AsyncClient() as client:
     )
 ```
 
-
 ## Development
 `httpx_iap` uses [Poetry](https://python-poetry.org/) to manage the development environment. Shortcuts for most development tasks are avaialable
 in the project Makefile
