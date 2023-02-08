@@ -9,7 +9,7 @@ license = "MIT"
 python = "^3.7"
 httpx = "^0.18.2"
 PyJWT = "^2.1.0"
-cryptography = "^3.4.7"
+cryptography = "^39.0.1"
 
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.0"
