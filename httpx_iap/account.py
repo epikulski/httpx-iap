@@ -30,7 +30,7 @@ class GoogleServiceAccount:  # pylint: disable=too-many-instance-attributes
     client_x509_cert_url: str
 
     def get_jwt_assertion(self, target_audience: str) -> str:
-        """Generate a JWT assertion for for a given OIDC audience."""
+        """Generate a JWT assertion for a given OIDC audience."""
         message = {
             "kid": self.private_key_id,
             "iss": self.client_email,
@@ -58,7 +58,7 @@ class GoogleServiceAccount:  # pylint: disable=too-many-instance-attributes
         client: httpx.Client,
         grant_type: str = "urn:ietf:params:oauth:grant-type:jwt-bearer",
     ) -> str:
-        """Generate an OIDC bear token for the given audience and grant type."""
+        """Generate an OIDC bearer token for the given audience and grant type."""
         response = client.post(
             self.token_uri,
             timeout=4,
@@ -74,7 +74,7 @@ class GoogleServiceAccount:  # pylint: disable=too-many-instance-attributes
         client: httpx.AsyncClient,
         grant_type: str = "urn:ietf:params:oauth:grant-type:jwt-bearer",
     ) -> str:
-        """Generate an OIDC bear token for the given audience and grant type."""
+        """Generate an OIDC bearer token for the given audience and grant type."""
         response = await client.post(
             self.token_uri,
             timeout=4,
