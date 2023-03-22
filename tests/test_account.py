@@ -20,7 +20,7 @@ class TestGoogleServiceAccount:
         assert claims["target_audience"] == audience
 
     def test_get_bearer_token(self, test_service_account, httpx_mock: HTTPXMock):
-        """Test Google OAuth API called correclty."""
+        """Test Google OAuth API called correctly."""
         httpx_mock.add_response(
             url=test_service_account.token_uri, json={"id_token": "test_id_token"}
         )
